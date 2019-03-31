@@ -6,11 +6,12 @@
   "license": "MIT",
   "dependencies": {
     "babel-preset-env": "^1.7.0",
+    "babel-preset-minify": "^0.6.0-alpha.5",
     "babel-preset-react": "^6.24.1"
   },
   "scripts": {
     "start": "live-server public/",
-    "compile": "babel src/app.js --out-file=public/scripts/app.js --presets=env,react --watch",
+    "compile": "babel src/app.js --out-file=public/scripts/app.js --presets=minify,env,react --watch",
     "start-scratch": "live-server scratchpad/public/",
     "compile-scratch": "babel scratchpad/src/app.js --out-file=scratchpad/public/scripts/app.js --presets=env,react --watch"
   }
