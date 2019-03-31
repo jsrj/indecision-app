@@ -4,6 +4,19 @@ const app = {
   'options': [' ']
 }
 
+class IndecisionApp extends React.Component {
+  render() {
+    return (
+      <div>
+      <Header />
+      <Options />
+      <AddOption />
+      <Action />
+    </div>
+    )
+  }
+}
+
 class Header extends React.Component {
   render() {
     return (
@@ -46,12 +59,4 @@ class AddOption extends React.Component {
   }
 }
 
-const jsx = (
-  <div>
-    <Header />
-    <Options />
-    <AddOption />
-    <Action />
-  </div>
-);
-ReactDOM.render(jsx, document.getElementById('app'));
+ReactDOM.render(<IndecisionApp />, document.getElementById('app'));
