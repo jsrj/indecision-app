@@ -38,10 +38,9 @@ class Options extends React.Component {
           && 'Here Are Your' || 'You Have No'
         } Options:</span>
         <ul>
-          <Option option={this.props.optionList[0]} />
-          <Option option={this.props.optionList[1]} />
-          <Option option={this.props.optionList[2]} />
-          <Option option={this.props.optionList[3]} />
+        {
+          this.props.optionList.map(option => <Option key={Math.random()*Math.random()} option={option} />)
+        }
         </ul>
       </div>
     );
