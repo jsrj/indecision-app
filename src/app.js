@@ -39,7 +39,9 @@ class Options extends React.Component {
         } Options:</span>
         <ul>
         {
-          this.props.optionList.map(option => <Option key={Math.random()*Math.random()} option={option} />)
+          this.props.optionList.map (
+            option => <Option key={Math.random()*Math.random()} option={option} />
+          )
         }
         </ul>
       </div>
