@@ -8,11 +8,11 @@ class IndecisionApp extends React.Component {
   render() {
     return (
       <div>
-      <Header />
-      <Options />
-      <AddOption />
-      <Action />
-    </div>
+        <Header />
+        <Options />
+        <AddOption />
+        <Action />
+      </div>
     )
   }
 }
