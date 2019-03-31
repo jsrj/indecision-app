@@ -1,14 +1,8 @@
-const app = {
-  title: 'Indecision',
-  'subTitle': 'Make Up Your Mind With The Help of Math',
-  'options': [' ']
-}
-
 class IndecisionApp extends React.Component {
   render() {
     return (
       <div>
-        <Header />
+        <Header title='Indecision' subTitle='Make Up Your Mind With The Help of Randomness' />
         <Options />
         <AddOption />
         <Action />
@@ -21,16 +15,10 @@ class Header extends React.Component {
   render() {
     return (
       <div>
-        <h1>{app.title}</h1>
-        <h4>{app.subTitle}</h4>
+        <h1>{this.props.title}</h1>
+        <h4>{this.props.subTitle}</h4>
       </div>
     );
-  }
-}
-
-class Action extends React.Component {
-  render() {
-    return <button>Choose For Me!</button>;
   }
 }
 
@@ -38,7 +26,7 @@ class Options extends React.Component {
   render() {
     return (
       <div>
-        <span>{(app.options.length > 0) && 'Here Are Your' || 'You Have No'} Options:</span>
+        <span>{(app.options && app.options.length > 0) && 'Here Are Your' || 'You Have No'} Options:</span>
         <ul>
           <Option />
           <Option />
@@ -62,6 +50,12 @@ class AddOption extends React.Component {
         <input type="text" name="option" placeholder="I want to..." />
       </form>
     );
+  }
+}
+
+class Action extends React.Component {
+  render() {
+    return <button>Make Up My Mind!</button>;
   }
 }
 
