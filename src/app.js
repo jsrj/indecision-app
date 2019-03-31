@@ -40,12 +40,18 @@ class Options extends React.Component {
       <div>
         <span>{(app.options.length > 0) && 'Here Are Your' || 'You Have No'} Options:</span>
         <ul>
-          <li>Option Component Goes Here</li>
-          <li>Option Component Goes Here</li>
-          <li>Option Component Goes Here</li>
+          <Option />
+          <Option />
+          <Option />
         </ul>
       </div>
     );
+  }
+}
+
+class Option extends React.Component {
+  render() {
+    return <li>Option Component Goes Here</li>
   }
 }
 
