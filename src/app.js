@@ -1,76 +1,68 @@
-console.log('App.js Loaded!');
-const ROOT = document.getElementById('app');
-
 const app = {
   title: 'Indecision',
-  subTitle: 'A Subtitle',
-  options: []
-};
-
-const getValue = (value) => value && value;
-
-let optionsExist = false; 
-
-const addOption = (event) => {
-  event.preventDefault();
-  
-  let option = event.target.elements.option.value;
-  if (option) {
-    let keyId = Math.random()
-                    .toString()
-                    .replace(RegExp('^[0-9].'), '')
-    app.options.push(<li id={keyId} key={keyId}>{option}</li>);
-    optionsExist = true;
-    event.target.elements.option.value = '';
-  }
-  refresh();
-};
-
-const clearOptions = () => {
-  event.preventDefault();
-  app.options = [];
-  optionsExist = false;
-  refresh();
-};
-
-const makeDecision = () => {
-  event.preventDefault();
-  if (app.options.length > 0 && optionsExist) {
-    let chosenOption = Math.floor(Math.random()*app.options.length);
-    app.options = [app.options[chosenOption]];
-  } else {
-    optionsExist = false;
-  }
-  refresh();
+  'subTitle': 'Make Up Your Mind With The Help of Math',
+  'options': [' ']
 }
 
-const refresh = () => {
+class IndecisionApp extends React.Component {
+  render() {
+    return (
+      <div>
+        <Header />
+        <Options />
+        <AddOption />
+        <Action />
+      </div>
+    )
+  }
+}
 
-  let baseTemplate = (
-    <div>
-      <h1>{ getValue(app.title) }</h1>
-      <h3>{ getValue(app.subTitle) }</h3>
-      {
-        (app.options && app.options.length > 0) 
-          && (
-            <div>
-              <p>You Have {app.options.length} Options:</p>
-              <ul>{app.options}</ul>
-            </div>  
-          )
-          || <p>There Are No Options</p>
-      }
-      <form onSubmit={addOption}>
-        <input type="text" name="option"/>
-        <button>Add</button>
-        &nbsp;
-        <button onClick={clearOptions}>Reset</button>
-        &nbsp;
-        {(optionsExist && app.options.length > 1) && <button disabled={!optionsExist} onClick={makeDecision}>Choose One!</button>}
+class Header extends React.Component {
+  render() {
+    return (
+      <div>
+        <h1>{app.title}</h1>
+        <h4>{app.subTitle}</h4>
+      </div>
+    );
+  }
+}
+
+class Action extends React.Component {
+  render() {
+    return <button>Choose For Me!</button>;
+  }
+}
+
+class Options extends React.Component {
+  render() {
+    return (
+      <div>
+        <span>{(app.options.length > 0) && 'Here Are Your' || 'You Have No'} Options:</span>
+        <ul>
+          <Option />
+          <Option />
+          <Option />
+        </ul>
+      </div>
+    );
+  }
+}
+
+class Option extends React.Component {
+  render() {
+    return <li>Option Component Goes Here</li>
+  }
+}
+
+class AddOption extends React.Component {
+  render() {
+    return (
+      <form>
+        <input type="text" name="option" placeholder="I want to..." />
       </form>
-    </div>
-  );
-  ReactDOM.render(baseTemplate, ROOT);
-};
+    );
+  }
+}
 
-refresh();
+ReactDOM.render(<IndecisionApp />, document.getElementById('app'));
