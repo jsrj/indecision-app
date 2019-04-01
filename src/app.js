@@ -28,7 +28,11 @@ class Header extends React.Component {
   }
 }
 
-class Options extends React.Component {
+class Options extends React.Component { 
+  removeOptions() {
+    console.log('Clear Option List');
+  }
+
   render() {
     return (
       <div>
@@ -45,6 +49,10 @@ class Options extends React.Component {
           )
         }
         </ul>
+
+        <br/>
+
+        <button onClick={this.removeOptions}>Reset</button>
       </div>
     );
   }
@@ -66,7 +74,6 @@ class AddOption extends React.Component {
       <form onSubmit={this.addOption}>
         <input type="text" name="option" placeholder="I want to..." />
         <button>Add Option</button>
-        <button>Reset</button>
       </form>
     );
   }
