@@ -10,7 +10,7 @@ class IndecisionApp extends React.Component {
       <div>
         <Header title={title} subTitle={subTitle} />
         <Options optionList={options} />
-        <AddOption />
+        <HandleOptions />
         <Action />
       </div>
     )
@@ -36,11 +36,12 @@ class Options extends React.Component {
         {
           (this.props.optionList && this.props.optionList.length > 0) 
           && 'Here Are Your' || 'You Have No'
-        } Options:</span>
+        } Options:
+        </span>
         <ul>
         {
           this.props.optionList.map (
-            option => <Option key={Math.random()*Math.random()} option={option} />
+            option => <Option key={option+Math.random()} option={option} />
           )
         }
         </ul>
@@ -55,11 +56,21 @@ class Option extends React.Component {
   }
 }
 
-class AddOption extends React.Component {
+class HandleOptions extends React.Component {
+  addOption(event) {
+    event.preventDefault();
+  }
+
+  resetOptions(event) {
+    event.preventDefault();
+  }
+
   render() {
     return (
-      <form>
+      <form onSubmit={this.addOption}>
         <input type="text" name="option" placeholder="I want to..." />
+        <button>Add Option</button>
+        <button>Reset</button>
       </form>
     );
   }
@@ -67,7 +78,7 @@ class AddOption extends React.Component {
 
 class Action extends React.Component {
   render() {
-    return <button>Make Up My Mind!</button>;
+    return <button onClick={this.doTheThing}>Make Up My Mind!</button>;
   }
 }
 
