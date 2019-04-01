@@ -11,7 +11,6 @@ class IndecisionApp extends React.Component {
         <Header title={title} subTitle={subTitle} />
         <Options optionList={options} />
         <AddOption />
-        <Action />
       </div>
     )
   }
@@ -67,13 +66,14 @@ class Option extends React.Component {
 class AddOption extends React.Component {
   addOption(event) {
     event.preventDefault();
+    console.log('Do The Thing');
   }
 
   render() {
     return (
       <form onSubmit={this.addOption}>
         <input type="text" name="option" placeholder="I want to..." />
-        <button>Add Option</button>
+        <Action />
       </form>
     );
   }
