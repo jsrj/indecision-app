@@ -10,7 +10,7 @@ class IndecisionApp extends React.Component {
       <div>
         <Header title={title} subTitle={subTitle} />
         <Options optionList={options} />
-        <HandleOptions />
+        <AddOption />
         <Action />
       </div>
     )
@@ -56,12 +56,8 @@ class Option extends React.Component {
   }
 }
 
-class HandleOptions extends React.Component {
+class AddOption extends React.Component {
   addOption(event) {
-    event.preventDefault();
-  }
-
-  resetOptions(event) {
     event.preventDefault();
   }
 
