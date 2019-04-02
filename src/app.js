@@ -1,15 +1,3 @@
-const globalOptions = {
-  options: [],
-
-  getOptions() {
-    return this.options
-  },
-
-  setOptions(newOptions) {
-    this.options = newOptions;
-  }
-}
-
 class IndecisionApp extends React.Component {
 
   render() {
@@ -40,8 +28,13 @@ class Header extends React.Component {
 }
 
 class Options extends React.Component { 
+  constructor(p) {
+    super(p);
+    this.removeOptions = this.removeOptions.bind(this);
+  }
+
   removeOptions() {
-    console.log('Clear Option List');
+    console.log(this.props.optionList);
   }
 
   render() {
@@ -81,6 +74,7 @@ class AddOption extends React.Component {
 
     let option = event.target.elements.option.value.trim();
     if (option) {
+
       console.log(`"${option}"`);
     }
     event.target.elements.option.value = '';

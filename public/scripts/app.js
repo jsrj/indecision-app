@@ -8,17 +8,6 @@ function _possibleConstructorReturn(self, call) { if (!self) { throw new Referen
 
 function _inherits(subClass, superClass) { if (typeof superClass !== "function" && superClass !== null) { throw new TypeError("Super expression must either be null or a function, not " + typeof superClass); } subClass.prototype = Object.create(superClass && superClass.prototype, { constructor: { value: subClass, enumerable: false, writable: true, configurable: true } }); if (superClass) Object.setPrototypeOf ? Object.setPrototypeOf(subClass, superClass) : subClass.__proto__ = superClass; }
 
-var globalOptions = {
-  options: [],
-
-  getOptions: function getOptions() {
-    return this.options;
-  },
-  setOptions: function setOptions(newOptions) {
-    this.options = newOptions;
-  }
-};
-
 var IndecisionApp = function (_React$Component) {
   _inherits(IndecisionApp, _React$Component);
 
@@ -84,16 +73,19 @@ var Header = function (_React$Component2) {
 var Options = function (_React$Component3) {
   _inherits(Options, _React$Component3);
 
-  function Options() {
+  function Options(p) {
     _classCallCheck(this, Options);
 
-    return _possibleConstructorReturn(this, (Options.__proto__ || Object.getPrototypeOf(Options)).apply(this, arguments));
+    var _this3 = _possibleConstructorReturn(this, (Options.__proto__ || Object.getPrototypeOf(Options)).call(this, p));
+
+    _this3.removeOptions = _this3.removeOptions.bind(_this3);
+    return _this3;
   }
 
   _createClass(Options, [{
     key: 'removeOptions',
     value: function removeOptions() {
-      console.log('Clear Option List');
+      console.log(this.props.optionList);
     }
   }, {
     key: 'render',
@@ -166,6 +158,7 @@ var AddOption = function (_React$Component5) {
 
       var option = event.target.elements.option.value.trim();
       if (option) {
+
         console.log('"' + option + '"');
       }
       event.target.elements.option.value = '';
