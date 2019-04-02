@@ -66,7 +66,11 @@ class Option extends React.Component {
 class AddOption extends React.Component {
   addOption(event) {
     event.preventDefault();
-    console.log('Do The Thing');
+
+    let option = event.target.elements.option.value;
+    if (option) {
+      console.log(option);
+    }
   }
 
   render() {
