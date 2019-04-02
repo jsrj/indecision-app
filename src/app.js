@@ -67,9 +67,10 @@ class AddOption extends React.Component {
   addOption(event) {
     event.preventDefault();
 
-    let option = event.target.elements.option.value;
+    let option = event.target.elements.option.value.trim();
     if (option) {
-      console.log(option);
+      console.log(`"${option}"`);
+      event.target.elements.option.value = '';
     }
   }
 
