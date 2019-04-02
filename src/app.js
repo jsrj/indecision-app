@@ -1,3 +1,15 @@
+const globalOptions = {
+  options: [],
+
+  getOptions() {
+    return this.options
+  },
+
+  setOptions(newOptions) {
+    this.options = newOptions;
+  }
+}
+
 class IndecisionApp extends React.Component {
 
   render() {
