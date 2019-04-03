@@ -11,7 +11,7 @@
   },
   "scripts": {
     "start": "live-server public/",
-    "compile": "babel src/visibility-toggle.js --out-file=public/scripts/app.js --presets=env,react --watch",
+    "compile": "babel src/app.js --out-file=public/scripts/app.js --presets=env,react --watch",
     "start-scratch": "live-server scratchpad/public/",
     "compile-scratch": "babel scratchpad/src/app.js --out-file=scratchpad/public/scripts/app.js --presets=env,react --watch"
   }
