@@ -6,14 +6,31 @@ class IndecisionApp extends React.Component {
       subTitle: 'Make Up Your Mind With The Help of Randomness',
       optionList: ['One Thing', 'Two Thing', 'Red Thing', 'Blue Thing']
     }
+
+    this.removeOptions = this.removeOptions.bind(this);
+  }
+
+  addOption(option) {
+
+  }
+
+  removeOptions() {
+    this.setState(() => {
+      return {
+        optionList: []
+      }
+    });
   }
 
   render() {
     return (
       <div>
         <Header title={this.state.title} subTitle={this.state.subTitle} />
-        <Options optionList={this.state.optionList} />
-        <AddOption />
+        <Options 
+          removeOptions={this.removeOptions}
+          optionList={this.state.optionList} 
+        />
+        <AddOption optionList={this.state.optionList} />
       </div>
     )
   }
@@ -31,35 +48,18 @@ class Header extends React.Component {
 }
 
 class Options extends React.Component { 
-  constructor(p) {
-    super(p);
-    this.state = {
-      optionList: this.props.optionList
-    }
-    this.removeOptions = this.removeOptions.bind(this);
-  }
-
-  removeOptions() {
-    console.log(this.state.optionList);
-    this.setState(() => {
-      return {
-        optionList: []
-      }
-    });
-  }
-
   render() {
     return (
       <div>
         <span>
         {
-          (this.state.optionList && this.state.optionList.length > 0) 
+          (this.props.optionList && this.props.optionList.length > 0) 
           && 'Here Are Your' || 'You Have No'
         } Options:
         </span>
         <ul>
         {
-          this.state.optionList.map (
+          this.props.optionList.map (
             option => <Option key={option+Math.random()} option={option} />
           )
         }
@@ -67,7 +67,7 @@ class Options extends React.Component {
 
         <br/>
 
-        <button onClick={this.removeOptions}>Reset</button>
+        <button onClick={this.props.removeOptions}>Reset</button>
       </div>
     );
   }
@@ -80,12 +80,27 @@ class Option extends React.Component {
 }
 
 class AddOption extends React.Component {
+  constructor(p) {
+    super(p);
+
+    this.state = {
+      optionList: this.props.optionList
+    }
+
+    this.addOption = this.addOption.bind(this);
+  }
+
   addOption(event) {
     event.preventDefault();
-    console.log(this.state);
+
     let option = event.target.elements.option.value.trim();
     if (option) {
-      console.log(`"${option}"`);
+
+      this.setState((prev) => {
+        return {
+          optionList: prev.optionList + option
+        }
+      });
     }
     event.target.elements.option.value = '';
   }
@@ -94,15 +109,29 @@ class AddOption extends React.Component {
     return (
       <form onSubmit={this.addOption}>
         <input type="text" name="option" placeholder="I want to..." />
-        <Action />
+        <button>Add Option</button>
+        <Action hasOptions={this.state.optionList.length > 0} />
       </form>
     );
   }
 }
 
 class Action extends React.Component {
+  constructor(p) {
+    super(p);
+    this.state = {
+      hasOptions: this.props.hasOptions
+    }
+  }
   render() {
-    return <button onClick={this.doTheThing}>Make Up My Mind!</button>;
+      return (
+        <button 
+          disabled={!this.props.hasOptions} 
+          onClick={this.doTheThing}
+        >
+        Make Up My Mind!
+        </button>
+      );
   }
 }
 
