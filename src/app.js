@@ -1,15 +1,18 @@
 class IndecisionApp extends React.Component {
+  constructor(p) {
+    super(p);
+    this.state = {
+      title: 'Indecision',
+      subTitle: 'Make Up Your Mind With The Help of Randomness',
+      optionList: ['One Thing', 'Two Thing', 'Red Thing', 'Blue Thing']
+    }
+  }
 
   render() {
-
-    const title = 'Indecision';
-    const subTitle = 'Make Up Your Mind With The Help of Randomness';
-    const options = ['One Thing', 'Two Thing', 'Red Thing', 'Blue Thing'];
-
     return (
       <div>
-        <Header title={title} subTitle={subTitle} />
-        <Options optionList={options} />
+        <Header title={this.state.title} subTitle={this.state.subTitle} />
+        <Options optionList={this.state.optionList} />
         <AddOption />
       </div>
     )
@@ -34,7 +37,13 @@ class Options extends React.Component {
   }
 
   removeOptions() {
-    console.log(this.props.optionList);
+    console.log(this.state.optionList);
+    this.setState(() => {
+      return {
+        optionList: []
+      }
+    });
+    console.log(this.state.optionList);
   }
 
   render() {

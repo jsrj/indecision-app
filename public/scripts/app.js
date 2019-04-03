@@ -11,25 +11,27 @@ function _inherits(subClass, superClass) { if (typeof superClass !== "function" 
 var IndecisionApp = function (_React$Component) {
   _inherits(IndecisionApp, _React$Component);
 
-  function IndecisionApp() {
+  function IndecisionApp(p) {
     _classCallCheck(this, IndecisionApp);
 
-    return _possibleConstructorReturn(this, (IndecisionApp.__proto__ || Object.getPrototypeOf(IndecisionApp)).apply(this, arguments));
+    var _this = _possibleConstructorReturn(this, (IndecisionApp.__proto__ || Object.getPrototypeOf(IndecisionApp)).call(this, p));
+
+    _this.state = {
+      title: 'Indecision',
+      subTitle: 'Make Up Your Mind With The Help of Randomness',
+      optionList: ['One Thing', 'Two Thing', 'Red Thing', 'Blue Thing']
+    };
+    return _this;
   }
 
   _createClass(IndecisionApp, [{
     key: 'render',
     value: function render() {
-
-      var title = 'Indecision';
-      var subTitle = 'Make Up Your Mind With The Help of Randomness';
-      var options = ['One Thing', 'Two Thing', 'Red Thing', 'Blue Thing'];
-
       return React.createElement(
         'div',
         null,
-        React.createElement(Header, { title: title, subTitle: subTitle }),
-        React.createElement(Options, { optionList: options }),
+        React.createElement(Header, { title: this.state.title, subTitle: this.state.subTitle }),
+        React.createElement(Options, { optionList: this.state.optionList }),
         React.createElement(AddOption, null)
       );
     }
@@ -85,7 +87,13 @@ var Options = function (_React$Component3) {
   _createClass(Options, [{
     key: 'removeOptions',
     value: function removeOptions() {
-      console.log(this.props.optionList);
+      console.log(this.state.optionList);
+      this.setState(function () {
+        return {
+          optionList: []
+        };
+      });
+      console.log(this.state.optionList);
     }
   }, {
     key: 'render',
