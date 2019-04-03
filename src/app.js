@@ -33,6 +33,9 @@ class Header extends React.Component {
 class Options extends React.Component { 
   constructor(p) {
     super(p);
+    this.state = {
+      optionList: this.props.optionList
+    }
     this.removeOptions = this.removeOptions.bind(this);
   }
 
@@ -43,7 +46,6 @@ class Options extends React.Component {
         optionList: []
       }
     });
-    console.log(this.state.optionList);
   }
 
   render() {
@@ -51,13 +53,13 @@ class Options extends React.Component {
       <div>
         <span>
         {
-          (this.props.optionList && this.props.optionList.length > 0) 
+          (this.state.optionList && this.state.optionList.length > 0) 
           && 'Here Are Your' || 'You Have No'
         } Options:
         </span>
         <ul>
         {
-          this.props.optionList.map (
+          this.state.optionList.map (
             option => <Option key={option+Math.random()} option={option} />
           )
         }
@@ -80,10 +82,9 @@ class Option extends React.Component {
 class AddOption extends React.Component {
   addOption(event) {
     event.preventDefault();
-
+    console.log(this.state);
     let option = event.target.elements.option.value.trim();
     if (option) {
-
       console.log(`"${option}"`);
     }
     event.target.elements.option.value = '';
